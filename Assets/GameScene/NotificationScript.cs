@@ -41,6 +41,13 @@ public class NotificationScript : MonoBehaviour
         Instantiate(_notificationText, _parent.transform);
     }
 
+    public static void HealAnimation(int hp) 
+    {
+        _notificationText.text = $"+ {hp} hp";
+        _notificationText.color = new Color(0.867f,0.0706f,0.0627f);
+        Instantiate(_notificationText, _parent.transform);
+    }
+
     public static void UseRopeAnimation() 
     {
         _notificationText.text = "- 1 rope";
@@ -50,7 +57,14 @@ public class NotificationScript : MonoBehaviour
 
     public static void UseCaltropsAnimation() 
     {
-        _notificationText.text = "- 1 rope";
+        _notificationText.text = "- 1 caltrops";
+        _notificationText.color = Color.white;
+        Instantiate(_notificationText, _parent.transform);
+    }
+
+    public static void UseShieldAnimation() 
+    {
+        _notificationText.text = "- 1 shield";
         _notificationText.color = Color.white;
         Instantiate(_notificationText, _parent.transform);
     }

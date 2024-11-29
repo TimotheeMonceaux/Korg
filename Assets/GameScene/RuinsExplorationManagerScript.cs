@@ -91,8 +91,14 @@ public class RuinsExplorationManagerScript : MonoBehaviour
         if (State == ExplorationState.Idle) {
             if (action == Action.Fight) Transition(ExplorationState.ToFight);
             else {
-                if ((CurrentEnemy.Def == null && PlayerScript.UseRope()) || PlayerScript.UseCaltrops()) 
-                    DestroyImmediate(gameObject);
+                if (CurrentEnemy.Def == null) {
+                    if (PlayerScript.UseRope()) 
+                        DestroyImmediate(gameObject);
+                }
+                else {
+                    if (PlayerScript.UseCaltrops()) 
+                        DestroyImmediate(gameObject);
+                }
             }
         }
         else if (State == ExplorationState.CombatEnd) {

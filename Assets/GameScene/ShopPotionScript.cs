@@ -1,12 +1,15 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ShopPotionScript : MonoBehaviour, IPointerClickHandler
 {
     public PlayerScript PlayerScript;
+    public GameObject Dice;
     public void OnPointerClick(PointerEventData eventData)
     {
-        PlayerScript.BuyPotion();
+        if (PlayerScript.BuyPotion()) 
+            StartCoroutine(UsePotion());
     }
 
     // Start is called before the first frame update
@@ -20,4 +23,13 @@ public class ShopPotionScript : MonoBehaviour, IPointerClickHandler
     {
         
     }
+
+    public IEnumerator UsePotion() {
+        var roll = RollDice();
+        yield return new WaitForSeconds(5f);
+        PlayerScript.UsePotion(roll);
+    }
+
+    private int RollDice() 
+        => Instantiate(Dice).GetComponent<DiceScript>().Roll();
 }

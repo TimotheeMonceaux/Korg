@@ -19,6 +19,7 @@ public class NotificationTextScript : MonoBehaviour
     {
         var text = gameObject.GetComponent<TMP_Text>();
         var up = new Vector3(0, 0.02f, 0);
+        gameObject.transform.position = new Vector3(Random.Range(-2f,2f), gameObject.transform.position.y, gameObject.transform.position.z);
         gameObject.SetActive(true);
         var elapsedTime = 0f;
         while (elapsedTime < 2f) {

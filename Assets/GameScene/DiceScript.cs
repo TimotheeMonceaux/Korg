@@ -43,6 +43,7 @@ public class DiceScript : MonoBehaviour
     private IEnumerator RollAnimation() 
     {
         float elapsedTime = 0f;
+        gameObject.transform.position = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), gameObject.transform.position.z);
         while(elapsedTime < 1f) {
             elapsedTime += Time.deltaTime;
             Renderer.sprite = _spriteDict[Random.Range(1,7)];

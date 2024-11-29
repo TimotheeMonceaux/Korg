@@ -45,6 +45,7 @@ public class PlayerScript : MonoBehaviour
 
     public bool TakeDmg(int dmg)
     {
+        if (Shields > 0) return UseShield();
         if (Armor) dmg = Mathf.Min(0, dmg - 1);
         SetLife(Life - dmg);
         NotificationScript.DamageAnimation(dmg);
@@ -157,6 +158,28 @@ public class PlayerScript : MonoBehaviour
         }
         --Ropes;
         NotificationScript.UseRopeAnimation();
+        return true;
+    }
+
+    public bool UseShield() 
+    {
+        if (Shields < 1) {
+            return false;
+        }
+        --Shields;
+        NotificationScript.UseShieldAnimation();
+        return true;
+    }
+
+    public bool UsePotion(int roll) 
+    {
+        if (Potions < 1) {
+            NotificationScript.CustomAnimation("Not enough potions");
+            return false;
+        }
+        --Potions;
+        SetLife(Mathf.Min(50, Life + roll));
+        NotificationScript.HealAnimation(roll);
         return true;
     }
 

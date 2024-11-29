@@ -6,11 +6,14 @@ using UnityEngine;
 public class RuinsExplorationManagerScript : MonoBehaviour
 {
     public GameObject Dice;
-    public GameObject Parent;
     public PlayerScript PlayerScript;
     public SpriteRenderer MonsterSpriteRenderer;
     public TMP_Text MonsterName;
     public TMP_Text MonsterStats;
+    public GameObject FightButton;
+    public TMP_Text FightButtonText;
+    public GameObject FleeButton;
+    public TMP_Text FleeButtonText;
     public Sprite PitTrapSprite;
     public Sprite SkeletonSprite;
     public Sprite GoblinSprite;
@@ -32,7 +35,7 @@ public class RuinsExplorationManagerScript : MonoBehaviour
             {5, new Enemy {Sprite = OgreSprite, Name = "Ogre", Atk = 4, Def = 4, Effect = null, Gold = 7}},
             {6, new Enemy {Sprite = DemonSprite, Name = "Demon", Atk = 4, Def = 6, Effect = null, Gold = 10}},
         };
-        State = ExplorationState.ToDrawEnemy;
+        Transition(ExplorationState.ToDrawEnemy);
     }
 
     void Update() {
@@ -49,27 +52,67 @@ public class RuinsExplorationManagerScript : MonoBehaviour
         }
     }
 
+    void Transition(ExplorationState state) {
+        switch (state) {
+            case ExplorationState.Idle:
+                FightButton.SetActive(true);
+                FleeButton.SetActive(true);
+                FightButtonText.text = "Fight";
+                FleeButtonText.text = "Flee";
+                State = ExplorationState.Idle;
+                break;
+            case ExplorationState.Rolling:
+                FightButton.SetActive(false);
+                FleeButton.SetActive(false);
+                State = ExplorationState.Rolling;
+                break;
+            case ExplorationState.ToDrawEnemy:
+                FightButton.SetActive(false);
+                FleeButton.SetActive(false);
+                State = ExplorationState.ToDrawEnemy;
+                break;
+            case ExplorationState.ToFight:
+                FightButton.SetActive(false);
+                FleeButton.SetActive(false);
+                State = ExplorationState.ToFight;
+                break;
+            case ExplorationState.CombatEnd:
+                FightButton.SetActive(true);
+                FleeButton.SetActive(true);
+                FightButtonText.text = "Again";
+                FleeButtonText.text = "Exit";
+                State = ExplorationState.CombatEnd;
+                break;
+        }
+    }
+
     public void FightOrFlee(Action action)
     {
         if (State == ExplorationState.Idle) {
-            if (action == Action.Fight) State = ExplorationState.ToFight;
+            if (action == Action.Fight) Transition(ExplorationState.ToFight);
             else {
                 if ((CurrentEnemy.Def == null && PlayerScript.UseRope()) || PlayerScript.UseCaltrops()) 
-                    DestroyImmediate(Parent);
+                    DestroyImmediate(gameObject);
             }
+        }
+        else if (State == ExplorationState.CombatEnd) {
+            if (action == Action.Fight) {
+                Transition(ExplorationState.ToDrawEnemy);
+            } 
+            else DestroyImmediate(gameObject);
         }
     }
 
     private IEnumerator DrawNewEnemy() 
     {
-        State = ExplorationState.Rolling;
+        Transition(ExplorationState.Rolling);
         DiceValue = RollDice();
         yield return new WaitForSeconds(5f);
         CurrentEnemy = _enemiesDict[DiceValue];
         MonsterSpriteRenderer.sprite = CurrentEnemy.Sprite;
         MonsterName.text = CurrentEnemy.Name;
         MonsterStats.text = CurrentEnemy.Def != null ? $"ATK: {CurrentEnemy.Atk}\nDEF: {CurrentEnemy.Def}" : CurrentEnemy.Effect;
-        State = ExplorationState.Idle;
+        Transition(ExplorationState.Idle);
     }
 
     private IEnumerator FightEnemy() 
@@ -81,10 +124,10 @@ public class RuinsExplorationManagerScript : MonoBehaviour
             MonsterSpriteRenderer.sprite = null;
             MonsterName.text = "";
             MonsterStats.text = "";
-            State = ExplorationState.ToDrawEnemy;
+            Transition(ExplorationState.ToDrawEnemy);
             yield break;
         }
-        State = ExplorationState.Rolling;
+        Transition(ExplorationState.Rolling);
         DiceValue = RollDice();
         yield return new WaitForSeconds(5f);
         if (DiceValue >= CurrentEnemy.Def - (PlayerScript.HasSword() ? 1 : 0)) {
@@ -92,12 +135,12 @@ public class RuinsExplorationManagerScript : MonoBehaviour
             MonsterName.text = "";
             MonsterStats.text = "";
             PlayerScript.GetGold(CurrentEnemy.Gold);
-            yield return new WaitForSeconds(1f);
-            State = ExplorationState.ToDrawEnemy;
+            yield return new WaitForSeconds(0.2f);
+            Transition(ExplorationState.CombatEnd);
         }
         else {
             PlayerScript.TakeDmg(CurrentEnemy.Atk);
-            State = ExplorationState.Idle;
+            Transition(ExplorationState.Idle);
         }
     }
 
@@ -110,7 +153,8 @@ public class RuinsExplorationManagerScript : MonoBehaviour
         Idle,
         Rolling,
         ToDrawEnemy,
-        ToFight
+        ToFight,
+        CombatEnd
     }
 
     public record Enemy 

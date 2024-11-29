@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         SetLife(StartingLife);
         SetGold(StartingGold);
     }
@@ -46,74 +47,116 @@ public class PlayerScript : MonoBehaviour
     {
         if (Armor) dmg = Mathf.Min(0, dmg - 1);
         SetLife(Life - dmg);
+        NotificationScript.DamageAnimation(dmg);
         return Life <= 0;
     }
 
     public bool GetGold(int gold)
     {
         SetGold(Mathf.Min(99, Gold + gold));
+        NotificationScript.GainGoldAnimation(gold);
         return true;
     }
 
     public bool BuyRope() 
     {
-        if (Gold < 2) return false;
+        if (Gold < 2) {
+            NotificationScript.CustomAnimation("Not enough gold");
+            return false;
+        }
         SetGold(Gold - 2);
         ++Ropes;
+        NotificationScript.SpendGoldAnimation(2);
         return true;
     }
 
     public bool BuyCaltrops() 
     {
-        if (Gold < 2) return false;
+        if (Gold < 2) {
+            NotificationScript.CustomAnimation("Not enough gold");
+            return false;
+        }
         SetGold(Gold - 2);
         ++Caltrops;
+        NotificationScript.SpendGoldAnimation(2);
         return true;
     }
 
     public bool BuyShield() 
     {
-        if (Gold < 3) return false;
+        if (Gold < 3) {
+            NotificationScript.CustomAnimation("Not enough gold");
+            return false;
+        }
         SetGold(Gold - 3);
         ++Shields;
+        NotificationScript.SpendGoldAnimation(1);
         return true;
     }
 
     public bool BuyPotion() 
     {
-        if (Gold < 4) return false;
+        if (Gold < 4) {
+            NotificationScript.CustomAnimation("Not enough gold");
+            return false;
+        }
         SetGold(Gold - 4);
         ++Potions;
+        NotificationScript.SpendGoldAnimation(4);
         return true;
     }
 
     public bool BuySword() 
     {
-        if (Sword || Gold < 5) return false;
+        if (Sword) {
+            NotificationScript.CustomAnimation("Out of stock");
+            return false;
+        }   
+        if (Gold < 5) {
+            NotificationScript.CustomAnimation("Not enough gold");
+            return false;
+        }
         SetGold(Gold - 5);
         Sword = true;
+        NotificationScript.SpendGoldAnimation(5);
         return true;
     }
 
     public bool BuyArmor() 
     {
-        if (Armor || Gold < 10) return false;
+        if (Armor) {
+            NotificationScript.CustomAnimation("Out of stock");
+            return false;
+        }   
+        if (Gold < 10) {
+            NotificationScript.CustomAnimation("Not enough gold");
+            return false;
+        }
         SetGold(Gold - 10);
         Armor = true;
+        NotificationScript.SpendGoldAnimation(10);
         return true;
     }
 
     public bool UseCaltrops() 
     {
-        if (Caltrops < 1) return false;
+        if (Caltrops < 1) {
+            NotificationScript.CustomAnimation("Not enough caltrops");
+            return false;
+        }
         --Caltrops;
+        NotificationScript.UseCaltropsAnimation();
         return true;
     }
 
     public bool UseRope() 
     {
-        if (Ropes < 1) return false;
+        if (Ropes < 1) {
+            NotificationScript.CustomAnimation("Not enough ropes");
+            return false;
+        }
         --Ropes;
+        NotificationScript.UseRopeAnimation();
         return true;
     }
 

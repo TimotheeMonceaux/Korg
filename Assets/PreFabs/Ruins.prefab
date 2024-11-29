@@ -171,66 +171,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 3524475671095478657}
   m_maskType: 0
---- !u!1 &2226290224256703362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5217622880835178889}
-  - component: {fileID: 326947149155804523}
-  m_Layer: 0
-  m_Name: ExplorationManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5217622880835178889
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2226290224256703362}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6872961, y: -1.172848, z: -2.0610037}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6111456900929670951}
-  - {fileID: 2371878542554270164}
-  - {fileID: 8426075985847154565}
-  m_Father: {fileID: 6183337575438372045}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &326947149155804523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2226290224256703362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 831503639b7be4b2781e6154b0f8f801, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dice: {fileID: 8117947419879145050, guid: dddd457705baf499291cda9c6bb1608e, type: 3}
-  MonsterSpriteRenderer: {fileID: 7733441962237975558}
-  MonsterName: {fileID: 1129014197200707497}
-  MonsterStats: {fileID: 2131812713986817801}
-  PitTrapSprite: {fileID: 21300000, guid: 120d865663fbc4837894d0390c693155, type: 3}
-  SkeletonSprite: {fileID: 21300000, guid: 83a588b5a209f43768e967dfb803ce2c, type: 3}
-  GoblinSprite: {fileID: 21300000, guid: f84660d8e48e7430c801adc2fb3f3042, type: 3}
-  WraithSprite: {fileID: 21300000, guid: f7e484f9a52a64d22ae7b275707765ad, type: 3}
-  OgreSprite: {fileID: 21300000, guid: 18e1378da2ed4482694bca2a1faaa0c2, type: 3}
-  DemonSprite: {fileID: 21300000, guid: 38a652b988adf4d7fbc90828cf314af2, type: 3}
-  Player: {fileID: 0}
-  DiceValue: 0
-  State: 0
 --- !u!1 &2334512631503956610
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,14 +196,14 @@ Transform:
   m_GameObject: {fileID: 2334512631503956610}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -0.6872961, y: -0.17284799, z: -2.0610037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 660360611893381263}
   - {fileID: 6213736903392390503}
   - {fileID: 4126964323000882361}
-  m_Father: {fileID: 5217622880835178889}
+  m_Father: {fileID: 6183337575438372045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2582226190803503088
 GameObject:
@@ -290,14 +230,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2582226190803503088}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -2.65, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.6872962, y: -3.822848, z: -2.0610037}
   m_LocalScale: {x: 0.4, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4201134359533598131}
   - {fileID: 2494204730851427286}
-  m_Father: {fileID: 5217622880835178889}
+  m_Father: {fileID: 6183337575438372045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3981386636860459282
 SpriteRenderer:
@@ -376,14 +316,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2799053409345733926}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -2.65, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3127038, y: -3.822848, z: -2.0610037}
   m_LocalScale: {x: 0.4, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7002174705772108013}
   - {fileID: 5188676995292115540}
-  m_Father: {fileID: 5217622880835178889}
+  m_Father: {fileID: 6183337575438372045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2702311702268277903
 SpriteRenderer:
@@ -551,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 1
-  Script: {fileID: 326947149155804523}
+  Script: {fileID: 6694525076210279852}
 --- !u!114 &8921199557499884729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,7 +878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
-  Script: {fileID: 326947149155804523}
+  Script: {fileID: 6694525076210279852}
 --- !u!114 &6888257678511501806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,6 +1472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6183337575438372045}
+  - component: {fileID: 6694525076210279852}
   m_Layer: 0
   m_Name: Ruins
   m_TagString: Untagged
@@ -1554,6 +1495,37 @@ Transform:
   m_Children:
   - {fileID: 461892786277777198}
   - {fileID: 2127031953998044666}
-  - {fileID: 5217622880835178889}
+  - {fileID: 6111456900929670951}
+  - {fileID: 2371878542554270164}
+  - {fileID: 8426075985847154565}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6694525076210279852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422611152302860762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831503639b7be4b2781e6154b0f8f801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dice: {fileID: 8117947419879145050, guid: dddd457705baf499291cda9c6bb1608e, type: 3}
+  PlayerScript: {fileID: 0}
+  MonsterSpriteRenderer: {fileID: 7733441962237975558}
+  MonsterName: {fileID: 1129014197200707497}
+  MonsterStats: {fileID: 2131812713986817801}
+  FightButton: {fileID: 2582226190803503088}
+  FightButtonText: {fileID: 2743045325253834220}
+  FleeButton: {fileID: 2799053409345733926}
+  FleeButtonText: {fileID: 1499459302360471246}
+  PitTrapSprite: {fileID: 21300000, guid: 120d865663fbc4837894d0390c693155, type: 3}
+  SkeletonSprite: {fileID: 21300000, guid: 83a588b5a209f43768e967dfb803ce2c, type: 3}
+  GoblinSprite: {fileID: 21300000, guid: f84660d8e48e7430c801adc2fb3f3042, type: 3}
+  WraithSprite: {fileID: 21300000, guid: f7e484f9a52a64d22ae7b275707765ad, type: 3}
+  OgreSprite: {fileID: 21300000, guid: 18e1378da2ed4482694bca2a1faaa0c2, type: 3}
+  DemonSprite: {fileID: 21300000, guid: 38a652b988adf4d7fbc90828cf314af2, type: 3}
+  DiceValue: 0
+  State: 0

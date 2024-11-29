@@ -9,9 +9,8 @@ public class ExploreCanvasScript : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         var go = Instantiate(Prefab);
-        var script = go.transform.Find("ExplorationManager").GetComponent<RuinsExplorationManagerScript>();
+        var script = go.transform.GetComponent<RuinsExplorationManagerScript>();
         script.PlayerScript = PlayerScript;
-        script.Parent = go;
     }
 
     // Start is called before the first frame update
